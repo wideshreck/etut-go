@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+.env
+.mypy_cache/
+.ruff_cache/
+dist/
+.pytest_cache/
+*.pyc
+.coverage
+htmlcov/
+*.egg-info/
+
+# GCP credentials
+gcp.json
+gcp*.json
+*.json.key

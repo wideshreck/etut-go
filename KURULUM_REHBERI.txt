@@ -1,0 +1,696 @@
+================================================================
+   ETUT PRO - MAC KURULUM REHBERI
+   (Hic bilmeyen birine anlatir gibi, adim adim)
+================================================================
+
+
+Merhaba! Bu rehber seni adim adim yonlendirecek.
+Her adimda ne yapacagini, nereye basacagini, ne yazacagini
+tek tek anlatiyorum. Hic acele etme, sirayla takip et.
+
+Tahmini sure: 20-30 dakika (internet hizina bagli)
+
+
+================================================================
+ADIM 1: TERMINAL'I AC
+================================================================
+
+Terminal, bilgisayara yazarak komut verdigin bir penceredir.
+Korkma, sadece yazip Enter'a basacaksin.
+
+Simdi bunu yap:
+
+  1. Klavyeden ayni anda su iki tusa bas:
+     Command (cmd) + Space (bosluk tusu)
+
+     (Command tusu klavyenin alt solunda, uzerinde  simgesi var)
+
+  2. Ekranin ortasinda bir arama kutusu acilacak.
+     Oraya su kelimeyi yaz:
+
+     Terminal
+
+  3. "Terminal" yazisina tikla veya Enter'a bas.
+
+  4. Siyah veya beyaz bir pencere acacak.
+     Iste bu Terminal! Bundan sonra tum komutlari
+     bu pencereye yazacaksin.
+
+NOT: Komutlari yazarken harfi harfine kopyala.
+     Bir harf bile farkli olursa calismaz.
+     En kolayı: fareyle secip Command+C ile kopyala,
+     Terminal'de Command+V ile yapistir.
+
+
+================================================================
+ADIM 2: HOMEBREW KUR (Mac'in Uygulama Yukleyicisi)
+================================================================
+
+Homebrew, Mac'e programlari kolayca yukleyen bir aractir.
+Bir kere kurarsin, gerisini o halleder.
+
+  1. Asagidaki yaziyi KOMPLE kopyala ve Terminal'e yapistir:
+
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  2. Enter'a bas.
+
+  3. Senden Mac sifren istenecek:
+     "Password:" yazacak ekranda.
+     Mac'ini acarken kullandigin sifreyi yaz.
+
+     ONEMLI: Sifreyi yazarken ekranda hicbir sey gorunmez!
+     Ne yildiz gorunur ne nokta. Bu normaldir.
+     Sifreni yaz ve Enter'a bas.
+
+  4. "Press RETURN to continue" diyecek.
+     Enter'a bas.
+
+  5. Yukleme baslar. 2-5 dakika surebilir.
+     Bitmesini bekle. Beklerken bir sey yazma.
+
+  6. ONEMLI! Yukleme bittiginde ekranda su yazilardan birini
+     goreceksin. Hangisini goruyorsan ONU kopyala yapistir:
+
+     Eger Mac'in M1, M2, M3 veya M4 islemcili ise
+     (2020 sonrasi Mac'lerin cogu):
+
+     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+     (Yukaridaki 2 satiri tek tek kopyala, yapistir, Enter'a bas)
+
+     Eger Mac'in Intel islemcili ise (eski model):
+
+     echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+     eval "$(/usr/local/bin/brew shellenv)"
+
+     Hangisini bilmiyorsan: Sol ustteki elma ikonuna tikla >
+     "About This Mac" > "Chip" veya "Processor" yazan yere bak.
+     "Apple M..." yaziyorsa M serisi, "Intel" yaziyorsa Intel.
+
+  7. Kontrol edelim. Bunu yaz ve Enter'a bas:
+
+     brew --version
+
+     "Homebrew 4..." gibi bir sey yazarsa TAMAM, basarili!
+     "command not found" yazarsa Terminal'i kapat, yenisini ac,
+     6. adimi tekrar yap.
+
+
+================================================================
+ADIM 3: GEREKLI PROGRAMLARI YUK
+================================================================
+
+Simdi sirayla 5 program yukleyecegiz.
+Her birini Terminal'e yaz ve Enter'a bas.
+Her komuttan sonra bitmesini bekle.
+
+  KOMUT 1 - Git (proje kodunu indirmek icin):
+
+     brew install git
+
+     Bitmesini bekle. (30 saniye - 1 dakika)
+
+
+  KOMUT 2 - Docker (veritabani icin):
+
+     brew install --cask docker
+
+     Bitmesini bekle. (1-3 dakika, buyuk dosya indirir)
+
+     Bittikten sonra Docker'i acmamiz lazim:
+
+     a) Klavyeden Command + Space'e bas
+     b) "Docker" yaz
+     c) "Docker" uygulamasina tikla
+     d) Acilan pencerede "Accept" veya "OK" butonlarina bas
+     e) Ekranin en ustundeki menude (saat, wifi ikonlarinin
+        oldugu yerde) bir BALINA ikonu gorunecek.
+        Bu ikonu gorene kadar bekle! (1-2 dakika surebilir)
+        Balina ikonu = Docker hazir.
+
+
+  KOMUT 3 - Python (backend icin):
+
+     brew install python@3.12
+
+     Bitmesini bekle. (1-2 dakika)
+
+
+  KOMUT 4 - UV (Python paket yoneticisi):
+
+     brew install uv
+
+     Bitmesini bekle. (30 saniye)
+
+
+  KOMUT 5 - Node.js (frontend icin):
+
+     brew install node@22
+
+     Bitmesini bekle. (1-2 dakika)
+
+     Sonra bunu da yaz:
+
+     brew link node@22
+
+     Eger "Warning" verirse sorun degil, devam et.
+
+
+  KOMUT 6 - pnpm (frontend paket yoneticisi):
+
+     npm install -g pnpm
+
+     Bitmesini bekle. (15 saniye)
+
+
+  KONTROL EDELIM - her seyin yuklendiginden emin olalim.
+  Bu komutlari tek tek yaz:
+
+     git --version
+     docker --version
+     python3 --version
+     uv --version
+     node --version
+     pnpm --version
+
+  Her biri bir versiyon numarasi gostermelidir.
+  Herhangi biri "command not found" derse,
+  o programin yuklenme komutunu tekrar calistir.
+
+
+================================================================
+ADIM 4: PROJEYI INDIR
+================================================================
+
+Simdi proje kodlarini bilgisayarina indirecegiz.
+
+  1. Terminal'e bunu yaz:
+
+     cd ~
+
+     (Bu seni ana klasorune goturur)
+
+  2. Projeyi indir:
+
+     git clone <BURAYA_REPO_ADRESINI_YAZ> etut-go
+
+     ONEMLI: <BURAYA_REPO_ADRESINI_YAZ> kismini sil ve
+     proje sahibinin sana verdigi linki yapistir.
+     Ornegin: git clone https://github.com/kullanici/etut-go.git etut-go
+
+  3. Proje klasorune gir:
+
+     cd etut-go
+
+EGER projeyi zaten bir USB veya klasorden aldiysan:
+     Projenin bulundugu klasorun yolunu yaz. Mesela:
+     cd /Users/senin_adin/Desktop/etut-go
+
+
+================================================================
+ADIM 5: VERITABANINI BASLAT
+================================================================
+
+Veritabani, tum bilgilerin (ogrenciler, ogretmenler, odemeler...)
+tutuldugu yerdir. Docker sayesinde tek komutla aciliyor.
+
+  1. Backend klasorune gir:
+
+     cd backend
+
+  2. Veritabanini baslat:
+
+     docker compose up -d
+
+     Ekranda su tur seyler goreceksin:
+     "Creating network..."
+     "Creating backend-db-1..."
+     "Started"
+
+     Bu normaldir, veritabani calisiyor demektir.
+
+  3. Calistigini kontrol et:
+
+     docker compose ps
+
+     "running" kelimesini goruyorsan TAMAM!
+
+  SORUN MU VAR?
+  "Cannot connect to Docker" diyorsa:
+  -> Docker uygulamasi acik mi? Ust menude balina ikonu var mi?
+     Yoksa Adim 3'teki Docker acma kismini tekrar yap.
+
+
+================================================================
+ADIM 6: BACKEND'I HAZIRLA
+================================================================
+
+  1. Ayar dosyasini olustur (hala backend klasorunde olmalisin):
+
+     cp .env.example .env
+
+     (Bu komut sessizce calisir, bir sey yazmaz. Normaldir.)
+
+  2. Gerekli paketleri yukle:
+
+     uv sync
+
+     Bir suru sey indirecek, bekle. (1-2 dakika)
+     "Auditing..." veya benzeri yazilar goreceksin. Normaldir.
+     Komut bittiginde yeni bir satir cikar ve beklemeye gecer.
+
+
+================================================================
+ADIM 7: VERITABANI TABLOLARINI OLUSTUR
+================================================================
+
+Simdi veritabaninin icine tablolari (ogrenci tablosu,
+ogretmen tablosu, odeme tablosu...) olusturacagiz.
+
+  Bu komutu yaz:
+
+     uv run alembic upgrade head
+
+  Ekranda soyle seyler goreceksin:
+     "Running upgrade -> ..."
+     "Running upgrade -> ..."
+     (bir suru satir)
+
+  Bu normaldir. Her satir bir tablonun olusturuldugu anlamina gelir.
+
+
+================================================================
+ADIM 8: DEMO VERILERI YUKLE (COKK ONEMLI!)
+================================================================
+
+Bu adim veritabanina ornek veriler yukler:
+Ornek ogrenciler, ogretmenler, veliler, odemeler, dersler...
+Boylece sistemi gercek bir dershanemis gibi deneyebilirsin.
+
+  Bu komutu yaz:
+
+     uv run python -m scripts.seed_demo_data
+
+  Ekranda soyle bir sey goreceksin:
+
+     Demo verisi basariyla olusturuldu!
+
+     ETUT PRO - DEMO GIRIS BILGILERI
+
+     Tum sifreler: demo123
+
+     Superadmin:  super@etutpro.com
+     Admin:       admin@yildizegitim.com
+     Ogretmenler:
+       Mehmet Kaya: mehmet@yildizegitim.com
+       Ayse Demir: ayse@yildizegitim.com
+       ...
+
+  Bu bilgileri bir yere not al veya bu dosyaya geri don.
+
+
+================================================================
+ADIM 9: BACKEND SUNUCUSUNU BASLAT
+================================================================
+
+Backend, sistemin beynidir. API sunucusunu baslatacagiz.
+
+  Bu komutu yaz:
+
+     uv run uvicorn app.main:app --reload
+
+  Ekranda soyle bir sey goreceksin:
+
+     INFO:     Uvicorn running on http://127.0.0.1:8000
+     INFO:     Application startup complete.
+
+  BASARILI! Backend calisiyor!
+
+  ***********************************************************
+  *  COKK ONEMLI: BU PENCEREYI KAPATMA!                    *
+  *  Bu pencere acik kaldigi surece backend calisir.        *
+  *  Kapatirsan sistem durur.                               *
+  *                                                         *
+  *  Simdi YENI bir Terminal penceresi ac:                  *
+  *  Klavyeden Command + T ye bas                           *
+  *  (ayni Terminal icinde yeni bir sekme acilir)           *
+  ***********************************************************
+
+
+================================================================
+ADIM 10: FRONTEND'I HAZIRLA VE BASLAT
+================================================================
+
+Yeni actığın Terminal sekmesinde (Adim 9'un devami):
+
+  1. Frontend klasorune git:
+
+     cd ~/etut-go/frontend
+
+  2. Ayar dosyasini olustur:
+
+     cp .env.example .env.local
+
+  3. Paketleri yukle:
+
+     pnpm install
+
+     Bir suru sey indirecek. (1-2 dakika)
+     Bitmesini bekle.
+
+  4. Frontend sunucusunu baslat:
+
+     pnpm dev
+
+     Ekranda soyle bir sey goreceksin:
+
+        Next.js 16.2.1
+        - Local: http://localhost:3000
+
+  BASARILI! Frontend de calisiyor!
+
+  ***********************************************************
+  *  BU PENCEREYI DE KAPATMA!                               *
+  *  Artik 2 Terminal sekmesi acik olmali:                  *
+  *  1. sekmede backend calisiyor                           *
+  *  2. sekmede frontend calisiyor                          *
+  ***********************************************************
+
+
+================================================================
+ADIM 11: SISTEME GIRIS YAP!
+================================================================
+
+Hersey hazir! Simdi tarayicini ac.
+
+  1. Safari, Chrome veya hangi tarayiciyi kullaniyorsan ac.
+
+  2. Adres cubuguna (en ustteki uzun beyaz kutu) bunu yaz:
+
+     http://localhost:3000
+
+  3. Enter'a bas.
+
+  4. Etut Pro giris sayfasi acilacak!
+
+
+GIRIS YAPMAK ICIN:
+
+  Sistemi farkli roller ile deneyebilirsin.
+  Her rolun farkli yetkileri ve ekranlari var.
+
+  *** TUM HESAPLARIN SIFRESI: demo123 ***
+
+
+  ----- YONETICI OLARAK GIRIS -----
+
+  Adres cubuguna yaz:  http://localhost:3000/login
+
+  E-posta:  admin@yildizegitim.com
+  Sifre:    demo123
+
+  Bu hesapla neler gorebilirsin:
+  - Tum ogrenciler, ogretmenler, veliler
+  - Ders programlari
+  - Odemeler ve taksitler
+  - Giderler (kira, fatura, vb.)
+  - Ogretmen maaslari
+  - Yoklama kayitlari
+  - Odevler
+  - Ozel dersler
+  - Duyurular
+  - On kayit (potansiyel ogrenci) takibi
+  - Raporlar
+  - Kisacasi: HER SEY
+
+
+  ----- PLATFORM YONETICISI (SUPERADMIN) OLARAK GIRIS -----
+
+  Adres cubuguna yaz:  http://localhost:3000/superadmin-login
+
+  E-posta:  super@etutpro.com
+  Sifre:    demo123
+
+  Bu hesapla neler gorebilirsin:
+  - Tum kurumlari yonetme
+  - Yeni kurum olusturma
+  - Platform geneli ayarlar
+
+
+  ----- OGRETMEN OLARAK GIRIS -----
+
+  Adres cubuguna yaz:  http://localhost:3000/login
+
+  Herhangi birini sec:
+
+  Mehmet Kaya (Matematik):    mehmet@yildizegitim.com
+  Ayse Demir (Fizik):         ayse@yildizegitim.com
+  Fatma Celik (Kimya):        fatma@yildizegitim.com
+  Ali Yilmaz (Turkce):        ali@yildizegitim.com
+  Zeynep Aksoy (Biyoloji):    zeynep@yildizegitim.com
+  Burak Sahin (Tarih):        burak@yildizegitim.com
+  Elif Ozturk (Ingilizce):    elif@yildizegitim.com
+  Hasan Arslan (Cografya):    hasan@yildizegitim.com
+
+  Sifre (hepsi icin):  demo123
+
+  Bu hesapla neler gorebilirsin:
+  - Kendi ders programi
+  - Siniflarindaki ogrenciler
+  - Odev verme ve takip
+  - Yoklama alma
+  - Ozel ders randevulari
+
+
+  ----- OGRENCI OLARAK GIRIS -----
+
+  Adres cubuguna yaz:  http://localhost:3000/login
+
+  Herhangi birini sec:
+
+  Ece Yilmaz (12-A Sayisal):        ece@ogrenci.com
+  Kaan Demir (12-A Sayisal):         kaan@ogrenci.com
+  Selin Arslan (12-A Sayisal):       selin@ogrenci.com
+  Emre Cetin (12-B Esit Agirlik):    emre@ogrenci.com
+  Zehra Koc (12-B Esit Agirlik):     zehra@ogrenci.com
+  Yusuf Sen (11-A Sayisal):          yusuf@ogrenci.com
+  Defne Aydin (11-A Sayisal):        defne@ogrenci.com
+  Berat Ozkan (11-B Sozel):          berat@ogrenci.com
+  Irem Gunes (LGS-A, 8. sinif):     irem@ogrenci.com
+  Arda Tekin (LGS-A, 8. sinif):     arda@ogrenci.com
+  Nisa Erdem (LGS-A, 8. sinif):     nisa@ogrenci.com
+  Can Polat (Mezun Sayisal):         can@ogrenci.com
+  Deniz Kurt (12-A Sayisal):         deniz@ogrenci.com
+  Ela Celik (11-A Sayisal):          ela@ogrenci.com
+  Mert Acar (LGS-A, 8. sinif):      mert@ogrenci.com
+
+  Sifre (hepsi icin):  demo123
+
+  Bu hesapla neler gorebilirsin:
+  - Kendi ders programi
+  - Odevleri
+  - Ozel ders randevulari
+  - Odeme/taksit durumu
+
+
+  ----- VELI OLARAK GIRIS -----
+
+  Adres cubuguna yaz:  http://localhost:3000/login
+
+  Herhangi birini sec:
+
+  Ayse Yilmaz (Ece'nin annesi):      ayse.yilmaz@veli.com
+  Huseyin Demir (Kaan'in babasi):     huseyin@veli.com
+  Fatma Arslan (Selin'in annesi):     fatma.arslan@veli.com
+  Mehmet Cetin (Emre'nin babasi):     mehmet.cetin@veli.com
+  Hatice Koc (Zehra'nin annesi):      hatice.koc@veli.com
+  Ali Sen (Yusuf'un babasi):          ali.sen@veli.com
+  Nurcan Gunes (Irem'in annesi):      nurcan@veli.com
+  Serkan Tekin (Arda'nin babasi):     serkan@veli.com
+
+  Sifre (hepsi icin):  demo123
+
+  Bu hesapla neler gorebilirsin:
+  - Cocugunun ders programi
+  - Cocugunun odevleri
+  - Cocugunun yoklama durumu
+  - Odeme/taksit durumu
+
+
+================================================================
+HEPSI BU KADAR! TEBRIKLER!
+================================================================
+
+Sistemi deneyebilirsin artik. Farkli hesaplarla giris
+yaparak farkli rollerin ne gordugunu kesfet.
+
+Tavsiyem: Once admin hesabiyla gir, etrafta dolasan.
+Sonra ogretmen, ogrenci, veli hesaplariyla giris yap
+ve farklari gor.
+
+
+================================================================
+BILGISAYARI KAPATIP ACTIKTAN SONRA TEKRAR BASLATMAK
+================================================================
+
+Bilgisayarini kapatip actiysan veya Terminal'leri kapattiysan,
+sistemi tekrar baslatmak icin su adimlari takip et:
+
+  1. Terminal'i ac (Command + Space, "Terminal" yaz, Enter)
+
+  2. Su komutlari sirayla yaz:
+
+     cd ~/etut-go/backend
+     docker compose up -d
+
+     (10 saniye bekle)
+
+     uv run uvicorn app.main:app --reload
+
+  3. Yeni Terminal sekmesi ac (Command + T) ve yaz:
+
+     cd ~/etut-go/frontend
+     pnpm dev
+
+  4. Tarayicida ac:  http://localhost:3000
+
+  Hepsi bu! Tekrar calisir.
+
+
+================================================================
+HERSEYI SILIP SIFIRDAN BASLATMAK
+================================================================
+
+Eger veritabaninda bir sey bozulduysa veya bastan baslamak
+istersen, su komutlari sirayla yaz:
+
+  cd ~/etut-go/backend
+
+  docker compose down -v
+
+  (Bu veritabanindaki tum verileri siler)
+
+  docker compose up -d
+
+  (Bos veritabanini yeniden baslatir. 10 saniye bekle.)
+
+  uv run alembic upgrade head
+
+  (Tablolari yeniden olusturur)
+
+  uv run python -m scripts.seed_demo_data
+
+  (Demo verileri yeniden yukler)
+
+Sonra backend ve frontend'i normal sekilde baslat
+(bir ust bolume bak).
+
+
+================================================================
+SIKCA KARSILASILAN SORUNLAR
+================================================================
+
+
+SORUN: "command not found" diyor
+-------
+Komut bulunamadiginda bu hatayi alirsın.
+
+Ne yapacaksin:
+  1. Terminal'i tamamen kapat (Command + Q)
+  2. Yeniden ac
+  3. Komutu tekrar dene
+
+Hala olmuyorsa, o programi tekrar yukle:
+  git icin:      brew install git
+  docker icin:   brew install --cask docker
+  python icin:   brew install python@3.12
+  uv icin:       brew install uv
+  node icin:     brew install node@22
+  pnpm icin:     npm install -g pnpm
+
+
+SORUN: Docker "Cannot connect" diyor
+-------
+Docker uygulamasi acik degil demektir.
+
+Ne yapacaksin:
+  1. Command + Space bas
+  2. "Docker" yaz, Enter'a bas
+  3. Ust menude balina ikonunu gor
+  4. Komutu tekrar dene
+
+
+SORUN: "port 5432 already in use" diyor
+-------
+Veritabani portu baska bir sey tarafindan kullaniliyor.
+
+Ne yapacaksin:
+  cd ~/etut-go/backend
+  docker compose down
+  docker compose up -d
+
+
+SORUN: Backend "Connection refused" diyor
+-------
+Veritabani hazir olmadan backend baslatilmis.
+
+Ne yapacaksin:
+  1. Once veritabaninin calistigini kontrol et:
+     cd ~/etut-go/backend
+     docker compose ps
+  2. "running" yaziyorsa 5 saniye bekle ve
+     backend'i tekrar baslat
+  3. "running" yazmiyorsa:
+     docker compose up -d
+     (10 saniye bekle)
+     uv run uvicorn app.main:app --reload
+
+
+SORUN: Tarayicide "sayfa bulunamadi" veya bos ekran
+-------
+Frontend veya backend calismiyordur.
+
+Ne yapacaksin:
+  1. Once su adresi dene: http://localhost:8000/health
+     Eger {"status":"ok"} goruyorsan backend calisiyor.
+     Gormuyorsan backend'i baslat (Adim 9).
+
+  2. Sonra su adresi dene: http://localhost:3000
+     Gormuyorsan frontend'i baslat (Adim 10).
+
+
+SORUN: Seed script "already exists" hatasi veriyor
+-------
+Demo verileri zaten yuklu demektir.
+
+Ne yapacaksin:
+  Eger verileri sifirlamak istiyorsan
+  "Herseyi Silip Sifirdan Baslatmak" bolumune bak.
+
+
+SORUN: "Mac sifreni gir" diyor ama yazmis gibi gorunmuyor
+-------
+Bu normaldir! Mac guvenlik icin sifreyi gizler.
+Yaziyor aslinda, sadece ekranda gorunmuyor.
+Sifreni yaz ve Enter'a bas.
+
+
+================================================================
+NOTLAR
+================================================================
+
+- AI Chat ozelligi icin Google Cloud (Gemini) hesabi gerekir.
+  Bu olmadan da sistemin geri kalani sorunsuz calisir.
+  Sadece yapay zeka sohbet ozelligi calismaz.
+
+- "localhost" senin kendi bilgisayarin demektir.
+  Baska birisi bu adresi yazarsa senin sistemi goremez.
+
+- Backend ve Frontend'in ayni anda acik olmasi gerekir.
+  Birini kapatirsan sistem duzgun calismaz.
+
+- Veritabani (Docker) arka planda calisir.
+  Terminal'i kapatsan bile calismaya devam eder.
+  Bilgisayari kapatirsan durur, tekrar baslatman gerekir.
