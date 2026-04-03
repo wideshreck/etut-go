@@ -8,7 +8,6 @@ dependencies = [
     "asyncpg>=0.31.0",
     "fastapi>=0.135.2",
     "bcrypt>=4.0,<5",
-    "passlib[bcrypt]>=1.7.4",
     "pydantic-settings>=2.13.1",
     "pydantic[email]>=2.12.5",
     "pyjwt>=2.12.1",
@@ -81,10 +80,6 @@ disallow_incomplete_defs = true
 check_untyped_defs = true
 plugins = ["pydantic.mypy"]
 exclude = ["alembic/", "tests/", "scripts/"]
-
-[[tool.mypy.overrides]]
-module = "passlib.*"
-ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "google.*"
