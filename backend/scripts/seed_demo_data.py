@@ -6,6 +6,8 @@ Gerçekçi Türk dershane verisi ile veritabanını doldurur.
 import asyncio
 from datetime import UTC, date, datetime, time, timedelta
 
+import sqlalchemy as sa
+
 from app.core.security import hash_password
 from app.db.session import async_session
 from app.models.announcement import (
@@ -36,7 +38,25 @@ from app.models.user import User, UserRole
 PASSWORD = hash_password("demo123")
 
 
+async def reset_db() -> None:
+    """Drop all table data while keeping schema and migrations intact."""
+    async with async_session() as db:
+        # Get all tables except alembic_version
+        result = await db.execute(sa.text(
+            "SELECT tablename FROM pg_tables "
+            "WHERE schemaname = 'public' AND tablename != 'alembic_version'"
+        ))
+        tables = [row[0] for row in result]
+        if tables:
+            await db.execute(sa.text(
+                f"TRUNCATE TABLE {', '.join(tables)} CASCADE"
+            ))
+        await db.commit()
+        print("🗑️  Tüm veriler silindi.")  # noqa: T201
+
+
 async def seed():
+    await reset_db()
     async with async_session() as db:
         # ─── INSTITUTION ────────────────────────────────────────
         inst = Institution(
