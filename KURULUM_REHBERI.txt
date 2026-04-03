@@ -192,21 +192,13 @@ Simdi proje kodlarini bilgisayarina indirecegiz.
 
      (Bu seni ana klasorune goturur)
 
-  2. Projeyi indir:
+  2. Projeyi indir (bu komutu oldugu gibi kopyala yapistir):
 
-     git clone <BURAYA_REPO_ADRESINI_YAZ> etut-go
-
-     ONEMLI: <BURAYA_REPO_ADRESINI_YAZ> kismini sil ve
-     proje sahibinin sana verdigi linki yapistir.
-     Ornegin: git clone https://github.com/kullanici/etut-go.git etut-go
+     git clone https://github.com/wideshreck/etut-go.git
 
   3. Proje klasorune gir:
 
      cd etut-go
-
-EGER projeyi zaten bir USB veya klasorden aldiysan:
-     Projenin bulundugu klasorun yolunu yaz. Mesela:
-     cd /Users/senin_adin/Desktop/etut-go
 
 
 ================================================================
