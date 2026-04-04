@@ -17,8 +17,8 @@ class AuditLog(Base):
     __tablename__ = "audit_logs"
 
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    institution_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("institutions.id", ondelete="CASCADE"), index=True
+    institution_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("institutions.id", ondelete="CASCADE"), index=True, nullable=True
     )
     user_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("users.id", ondelete="SET NULL"), index=True
