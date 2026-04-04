@@ -6,7 +6,7 @@ from app.models.audit_log import AuditLog
 async def log_action(
     db: AsyncSession,
     *,
-    institution_id: str,
+    institution_id: str | None,
     user_id: str,
     action: str,
     entity_type: str,

@@ -60,7 +60,7 @@ async def login(
 
     await log_action(
         db,
-        institution_id=str(user.institution_id) if user.institution_id else "system",
+        institution_id=str(user.institution_id) if user.institution_id else None,
         user_id=str(user.id),
         action="login",
         entity_type="auth",
