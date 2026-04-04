@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     gcp_project_id: str = ""
     gcp_location: str = "global"
 
+    # CORS
+    cors_origins: str = "http://localhost:3000"
+
     # JWT
     jwt_secret: str = "change-me-in-production"
     jwt_algorithm: str = "HS256"
